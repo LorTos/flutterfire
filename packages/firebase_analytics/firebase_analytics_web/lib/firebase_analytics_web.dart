@@ -63,7 +63,12 @@ class FirebaseAnalyticsWeb extends FirebaseAnalyticsPlatform {
     bool? adStorageConsentGranted,
     bool? analyticsStorageConsentGranted,
   }) async {
-    throw UnimplementedError('setConsent() is not supported on Web.');
+    return convertWebExceptions(
+      () => _delegate.setConsent(
+        adStorage: adStorageConsentGranted,
+        analyticsStorage: analyticsStorageConsentGranted,
+      ),
+    );
   }
 
   @override

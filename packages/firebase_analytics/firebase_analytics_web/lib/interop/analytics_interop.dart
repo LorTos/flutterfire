@@ -56,7 +56,31 @@ external void setUserProperties(
   AnalyticsCallOptions? callOptions,
 );
 
+/// https://firebase.google.com/docs/reference/js/analytics.md#setconsent
+@JS()
+external PromiseJsImpl<void> setConsent(
+  ConsentSettings consentSettings,
+);
+
 @JS('Analytics')
 abstract class AnalyticsJsImpl {
   external AppJsImpl get app;
+}
+
+/// https://firebase.google.com/docs/reference/js/analytics.consentsettings
+@JS()
+class ConsentSettings {
+  external String? get ad_storage;
+  external String? get analytics_storage;
+  external String? get functionality_storage;
+  external String? get personalization_storage;
+  external String? get security_storage;
+
+  external factory ConsentSettings({
+    String? ad_storage,
+    String? analytics_storage,
+    String? functionality_storage,
+    String? personalization_storage,
+    String? security_storage,
+  });
 }

@@ -90,4 +90,24 @@ class Analytics extends JsObjectWrapper<analytics_interop.AnalyticsJsImpl> {
       callOptions,
     );
   }
+
+  Future<void> setConsent({
+    required bool? adStorage,
+    required bool? analyticsStorage,
+  }) {
+    final adStorageValue = adStorage == false ? 'denied' : 'granted';
+    final analyticsStorageValue =
+        analyticsStorage == false ? 'denied' : 'granted';
+    return handleThenable(
+      analytics_interop.setConsent(
+        analytics_interop.ConsentSettings(
+          ad_storage: adStorageValue,
+          analytics_storage: analyticsStorageValue,
+          functionality_storage: 'granted',
+          personalization_storage: 'granted',
+          security_storage: 'granted',
+        ),
+      ),
+    );
+  }
 }
