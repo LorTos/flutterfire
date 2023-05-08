@@ -16,15 +16,12 @@ export 'analytics_interop.dart';
 /// Given an AppJSImp, return the Analytics instance.
 Analytics getAnalyticsInstance([App? app]) {
   return Analytics.getInstance(
-    app != null
-        ? analytics_interop.getAnalytics(app.jsObject)
-        : analytics_interop.getAnalytics(),
+    app != null ? analytics_interop.getAnalytics(app.jsObject) : analytics_interop.getAnalytics(),
   );
 }
 
 class Analytics extends JsObjectWrapper<analytics_interop.AnalyticsJsImpl> {
-  Analytics._fromJsObject(analytics_interop.AnalyticsJsImpl jsObject)
-      : super.fromJsObject(jsObject);
+  Analytics._fromJsObject(analytics_interop.AnalyticsJsImpl jsObject) : super.fromJsObject(jsObject);
   static final _expando = Expando<Analytics>();
 
   /// Creates a new Analytics instance from a [jsObject].
@@ -91,22 +88,19 @@ class Analytics extends JsObjectWrapper<analytics_interop.AnalyticsJsImpl> {
     );
   }
 
-  Future<void> setConsent({
+  void setConsent({
     required bool? adStorage,
     required bool? analyticsStorage,
   }) {
     final adStorageValue = adStorage == false ? 'denied' : 'granted';
-    final analyticsStorageValue =
-        analyticsStorage == false ? 'denied' : 'granted';
-    return handleThenable(
-      analytics_interop.setConsent(
-        analytics_interop.ConsentSettings(
-          ad_storage: adStorageValue,
-          analytics_storage: analyticsStorageValue,
-          functionality_storage: 'granted',
-          personalization_storage: 'granted',
-          security_storage: 'granted',
-        ),
+    final analyticsStorageValue = analyticsStorage == false ? 'denied' : 'granted';
+    return analytics_interop.setConsent(
+      analytics_interop.ConsentSettings(
+        ad_storage: adStorageValue,
+        analytics_storage: analyticsStorageValue,
+        functionality_storage: 'granted',
+        personalization_storage: 'granted',
+        security_storage: 'granted',
       ),
     );
   }

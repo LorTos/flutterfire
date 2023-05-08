@@ -57,5 +57,11 @@ void main() {
       verify(analytics.setAnalyticsCollectionEnabled(true));
       verifyNoMoreInteractions(analytics);
     });
+
+    test('setConsent', () {
+      analytics.setConsent(adStorageConsentGranted: true, analyticsStorageConsentGranted: true);
+      verify(analytics.setConsent(adStorageConsentGranted: true, analyticsStorageConsentGranted: true));
+      verifyNoMoreInteractions(analytics);
+    });
   });
 }

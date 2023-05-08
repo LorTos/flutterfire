@@ -58,7 +58,7 @@ external void setUserProperties(
 
 /// https://firebase.google.com/docs/reference/js/analytics.md#setconsent
 @JS()
-external PromiseJsImpl<void> setConsent(
+external void setConsent(
   ConsentSettings consentSettings,
 );
 
@@ -69,6 +69,7 @@ abstract class AnalyticsJsImpl {
 
 /// https://firebase.google.com/docs/reference/js/analytics.consentsettings
 @JS()
+@anonymous
 class ConsentSettings {
   external String? get ad_storage;
   external String? get analytics_storage;

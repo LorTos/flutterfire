@@ -127,8 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _testSetSessionTimeoutDuration() async {
-    await widget.analytics
-        .setSessionTimeoutDuration(const Duration(milliseconds: 20000));
+    await widget.analytics.setSessionTimeoutDuration(const Duration(milliseconds: 20000));
     setMessage('setSessionTimeoutDuration succeeded');
   }
 
@@ -149,6 +148,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _testResetAnalyticsData() async {
     await widget.analytics.resetAnalyticsData();
     setMessage('resetAnalyticsData succeeded');
+  }
+
+  Future<void> _testSetConsent() async {
+    await widget.analytics.setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    setMessage('setConsent succeeded');
   }
 
   AnalyticsEventItem itemCreator() {
@@ -224,8 +228,7 @@ class _MyHomePageState extends State<MyHomePage> {
       level: 70,
       character: 'tiefling cleric',
     );
-    await widget.analytics
-        .logPurchase(currency: 'USD', transactionId: 'transaction-id');
+    await widget.analytics.logPurchase(currency: 'USD', transactionId: 'transaction-id');
     await widget.analytics.logSearch(
       searchTerm: 'hotel',
       numberOfNights: 2,
@@ -352,6 +355,10 @@ class _MyHomePageState extends State<MyHomePage> {
           MaterialButton(
             onPressed: _setDefaultEventParameters,
             child: const Text('Test setDefaultEventParameters'),
+          ),
+          MaterialButton(
+            onPressed: _testSetConsent,
+            child: const Text('Test setConsent'),
           ),
           Text(
             _message,
